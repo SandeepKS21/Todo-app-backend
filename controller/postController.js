@@ -59,3 +59,21 @@ exports.delete = async (req, res) => {
     return res.status(500).send({ msg: "Internal server error", code: 500, data: e });
   }
 };
+
+exports.update = async (req, res) => {
+  const id = req.params.id;
+
+  // check valid id
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).send({ msg: "Invalid ID", code: 400 });
+  }
+
+  try {
+    const data = await post.findByIdAndUpdate(id, { $set: req.body }, { new: true }).lean();
+    // console.log(data);
+
+    res.send({ msg: data, code: 200 });
+  } catch (e) {
+    res.status(500).send({ msg: "Internal server error", code: 500, data: e });
+  }
+};
