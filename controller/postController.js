@@ -36,7 +36,7 @@ exports.view = async (req, res) => {
 
     console.log("ok");
   } catch (e) {
-    res.status(500).send({ msg: "internal server error", code: 500 });
+    res.status(500).send({ msg: "internal server error", code: 500 ,data:e});
   }
 };
 
