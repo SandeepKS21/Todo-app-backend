@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+require("../db/db");
 const authSchema = mongoose.Schema({
   name: {
     type: String,
