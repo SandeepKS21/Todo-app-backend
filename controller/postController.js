@@ -30,13 +30,14 @@ exports.create = async (req, res) => {
 
 exports.view = async (req, res) => {
   try {
-    const data = await post.find({});
+    // "sort({ timestamps: -1 })"=? means order by date DESC
+    const data = await post.find().sort({ timestamps: -1 });
 
     res.send({ msg: "success", code: 200, data });
 
     console.log("ok");
   } catch (e) {
-    res.status(500).send({ msg: "internal server error", code: 500,data:e});
+    res.status(500).send({ msg: "internal server error", code: 500, data: e });
   }
 };
 

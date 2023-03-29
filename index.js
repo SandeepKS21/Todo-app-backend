@@ -10,5 +10,6 @@ app.use(express.json());
 
 
 app.use("/post", Route.post);
+app.use("/",Route.userAuth);
 
 app.listen(process.env.PORT);
