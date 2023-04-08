@@ -39,13 +39,13 @@ exports.login = async (req, res) => {
     return res.status(400).send({ msg: "Wrong Password", code: 400 });
   }
   try {
-    const token = jwt.sign({ name: req.body.name }, process.env.JWT_KEY);
+    const token = jwt.sign({ id: user._id }, process.env.JWT_KEY);
 
     user.token = token;
 
     await user.save();
 
-    console.log(user);
+    // console.log(user);
 
     res.send({ msg: "success", code: 200, data: { token: user.token } });
   } catch (e) {
